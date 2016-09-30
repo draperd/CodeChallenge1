@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --progress --profile --colors"
+    "start": "webpack-dev-server --progress --profile --colors",
+    "test": "./node_modules/.bin/intern-runner config=tests/intern"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
     "babel-loader": "^6.2.5",
     "babel-preset-es2015": "^6.16.0",
     "css-loader": "^0.25.0",
+    "intern": "^3.3.1",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "style-loader": "^0.13.1",
