@@ -5,13 +5,10 @@ define(function (require) {
    registerSuite({
       name: "Basic Tests",
 
-      "No API Key Message": function () {
+      "Some MovieDB content loaded": function () {
          return this.remote.get(require.toUrl("http://localhost:8080/index.html"))
-            .findByCssSelector("div")
-               .getVisibleText()
-               .then(function(text) {
-                  assert.equal(text, "No API Key Configured");
-               });
+            .setFindTimeout(5000)
+            .findDisplayedByCssSelector("div.movie-data");
         }
     });
 });
