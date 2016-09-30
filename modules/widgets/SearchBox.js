@@ -12,7 +12,7 @@ class SearchBox {
     * @return {SearchBox} A new SearchBox
     */
    constructor(input) {
-      // Nothing yet
+      this.callback = input.callback;
    }
 
    /**
@@ -22,11 +22,25 @@ class SearchBox {
     */
    generateElements() {
       var fragment = document.createDocumentFragment();
-      var input = document.createElement("input");
-      input.className = "SearchBox";
-      input.placeholder = "Search for movies...";
-      fragment.appendChild(input);
+      this.input = document.createElement("input");
+      this.input.className = "SearchBox";
+      this.input.placeholder = "Search for movies...";
+
+      this.input.addEventListener("keyup", evt => this.onKeyUp(evt));
+
+      fragment.appendChild(this.input);
       return fragment;
+   }
+
+   onKeyUp(evt) {
+      clearTimeout(this.debounce);
+      this.debounce = setTimeout(() => {
+         this.useInput();
+      }, 500);
+   }
+
+   useInput() {
+      this.callback(this.input.value);
    }
 }
 

@@ -9,21 +9,31 @@ import MovieList from "./modules/widgets/MovieList";
 var d = document.createElement("section");
 if (apiKey.key)
 {
-   var searchBox = new SearchBox();
+   var lastResults;
+   var search = function(term) {
+
+      lastResults && d.lastChild.remove();
+
+      xhrUtils.getMovies({
+         query: term
+      }).then(function(data) {
+         
+         var movieList = new MovieList({
+            movies: data.results
+         });
+
+         var listElements = movieList.generateElements();
+         lastResults = d.appendChild(listElements);
+      });
+   };
+
+   var searchBox = new SearchBox({
+      callback: search
+   });
    var searchBoxElements = searchBox.generateElements();
    d.appendChild(searchBoxElements);
 
-   xhrUtils.getMovies({
-      query: "lego"
-   }).then(function(data) {
-      
-      var movieList = new MovieList({
-         movies: data.results
-      });
-
-      var listElements = movieList.generateElements();
-      d.appendChild(listElements);
-   });
+   
 }
 else
 {
