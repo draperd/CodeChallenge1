@@ -15,6 +15,8 @@ npm install
 npm start
 ```
 
+Open a browser at http://localhost:8080/
+
 ###Instructions for testing...
 ```
 npm install -g selenium-standalone
