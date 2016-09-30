@@ -19,9 +19,6 @@ if (apiKey.key)
 
       var listElements = movieList.generateElements();
       d.appendChild(listElements);
-
-      // d.className = "movie-data"; // This is just temporary for the test
-      // d.appendChild(document.createTextNode(text));
    });
 }
 else
